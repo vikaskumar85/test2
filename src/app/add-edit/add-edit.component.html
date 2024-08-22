@@ -1,0 +1,107 @@
+<h1>{{title}} </h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <!-- <label for="name">firstName:</label>
+       <input type="text" id="firstName" formControlName="firstName">
+  
+        <label for="email">Email:</label>
+         <input type="email" id="email" formControlName="email">
+  
+         <button type="submit">Submit</button> -->
+
+         <div>
+
+            <div class="form-group"  *ngIf="submitting">
+                <label for="title">ID</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="id"
+                 
+                  formControlName="id"
+                  name="id"
+                />
+              </div>
+
+                <div class="form-group was-validated  mb-2" 
+                [ngClass]="{ 'form-group was-validated  mb-2': (contactFormControl.firstName.touched || submitted) &&
+                contactFormControl.firstName.errors?.['required'], 'form-group': !(contactFormControl.firstName.touched || submitted) &&
+                contactFormControl.firstName.errors?.['required'] }"
+                >
+                  <label for="title">FirstName </label><span style="color: red;">*</span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="firstName"
+                    required
+                    formControlName="firstName"
+                    name="firstName"
+                  />
+
+                  
+                </div>
+                <span
+                class="text-danger"
+                *ngIf="
+                    (contactFormControl.firstName.touched || submitted) &&
+                    contactFormControl.firstName.errors?.['required']"
+              >
+                FirstName is required
+              </span>
+  
+          
+                <div  [ngClass]="{ 'form-group was-validated  mb-2': (contactFormControl.lastName.touched || submitted) &&
+                contactFormControl.lastName.errors?.['required'], 'form-group': !(contactFormControl.lastName.touched || submitted) &&
+                contactFormControl.lastName.errors?.['required'] }">
+                  <label for="description">LastName</label><span style="color: red;">*</span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="lastName"
+                    required
+                    formControlName="lastName"
+                    name="lastName"
+                  />
+
+                  <span
+                  class="text-danger"
+                  *ngIf="
+                      (contactFormControl.lastName.touched || submitted) &&
+                      contactFormControl.lastName.errors?.['required']"
+                >
+                  LastName is required
+                </span>
+          
+                  <div [ngClass]="{ 'form-group was-validated  mb-2': (contactFormControl.email.touched || submitted) &&
+                  contactFormControl.email.errors?.['required'], 'form-group': !(contactFormControl.email.touched || submitted) &&
+                  contactFormControl.email.errors?.['required'] }">
+                      <label for="description">Email</label><span style="color: red;">*</span>
+                      <input
+                        class="form-control"
+                        id="email"
+                        required
+                        formControlName="email"
+                     
+                        name="email"
+                        type="email"
+                        
+                      />
+                      <span
+                  class="text-danger"
+                  *ngIf="
+                      (contactFormControl.email.touched || submitted) &&
+                      contactFormControl.email.errors?.['required']"
+                >
+                Email is required
+                </span>
+                </div>
+  
+              </div>
+              <div class="mb-3">
+                <button [disabled]="submitting" class="btn btn-primary">
+                    <span *ngIf="submitting" class="spinner-border spinner-border-sm me-1"></span>
+                    Save
+                </button>
+                <a routerLink="/View" class="btn btn-link">Cancel</a>
+            </div>
+            </div>
+   </form> 
